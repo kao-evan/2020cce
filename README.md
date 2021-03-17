@@ -84,20 +84,21 @@ int main()
 ```
 #第三週
 
-## 第一題
+## 第一題  int *p = &a[2]; *p=222; p = p + 2; *p = 666;
 ```
 #include <stdio.h>
 int a[5]={0,10,20,30,40};
 int main()
 {
- int *p=&a[2];
+ int *p=&a[2];  ///p在a[2]的位址
  *p=222;
 
- p=p+2;
+ p=p+2;        ///p變成a[4]的位址
  *p=666;
 }
 ```
-## 第二題
+## 第二題  int *p = &a[2]; *p=222; p = p + 2; *p = 666;
+p--; *p=555;
 ```
 #include <stdio.h>
 int a[5]={0,10,20,30,40};
@@ -111,18 +112,51 @@ void printAll()
 }
 int main()
 {
- int *p=&a[2];
- *p= 222;
+ int *p=&a[2];      ///p在20的位址
+ *p= 222;        
        printAll();
- p=p+2;
+ p=p+2;            ///p在40的位址
  *p= 666;
        printAll();
  p--;
- *p= 555;
+ *p= 555;          ///p在30的位址
        printAll();
+}
+
+```
+## 第三題 int *p=&a[2]; 及指標的使用 p = &a[2] 
+```
+#include <stdio.h>
+int a[5]={0,10,20,30,40,50,60,70,8090};
+void printAll()
+{
+    for(int i=0; i<10 ;i++)
+    {
+        printf("%d ", a[i]);
+    }
+    printf("\n");
+}
+int main()
+{
+ int *p=&a[2];      
+ *p= 222;        
+       printAll();
+       
+ int  *p2= p+4;    ///宣告
+ 
+ p=p+2;            ///使用
+ *p2=666;
+      printAll();
+ 
+ p2--;
+ *p= 555;         
+       printAll();
+       
+ return 0;      
 }
 ```
 
+## 第四題  malloc
 ```
 #include <stdio.h>
 #include <stdlib.h>
@@ -131,7 +165,7 @@ int main()
 {
  int b[10];
 
- int *p=(int*) malloc( sizeof(int)*10 );
+ int *p=(int*) malloc( sizeof(int)*10 );  
 
  return 0;
 }
