@@ -172,6 +172,7 @@ int main()
 ```
 #第四週
 
+## 第一題
 #include <stdio.h>
 struct DATA
 { ///宣告
@@ -186,3 +187,21 @@ int main()
     printf("%f %f %f\n", point1.x,point1.y,point1.z);
 }
 
+## 第三題
+#include <stdio.h>
+struct DATA
+{ ///宣告
+ float x,y,z;  ///定義裡面有...
+} point1 ;
+struct DATA point[5];
+/// point1 是變數
+int main()
+{
+    for(int i=0; i<5; i++)
+    {
+    point[i].x= i*10;
+    point[i].y= 20;
+    point[i].z= 0;
+    printf("%f %f %f\n", point[i].x,point[i].y,point[i].z);
+    }
+}
