@@ -188,6 +188,7 @@ int main()
 }
 
 ## 第三題
+```
 #include <stdio.h>
 struct DATA
 { ///宣告
@@ -205,6 +206,7 @@ int main()
     printf("%f %f %f\n", point[i].x,point[i].y,point[i].z);
     }
 }
+```
 ## 第五題
 #include <stdio.h>
 struct DATA
