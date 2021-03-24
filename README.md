@@ -171,8 +171,8 @@ int main()
 }
 ```
 #第四週
-
 ## 第一題
+```
 #include <stdio.h>
 struct DATA
 { ///宣告
@@ -186,7 +186,7 @@ int main()
     point1.z=7;
     printf("%f %f %f\n", point1.x,point1.y,point1.z);
 }
-
+```
 ## 第三題
 ```
 #include <stdio.h>
