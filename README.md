@@ -97,8 +97,7 @@ int main()
  *p=666;
 }
 ```
-## 第二題  int *p = &a[2]; *p=222; p = p + 2; *p = 666;
-p--; *p=555;
+## 第二題  int *p = &a[2]; *p=222; p = p + 2; *p = 666;p--; *p=555;
 ```
 #include <stdio.h>
 int a[5]={0,10,20,30,40};
@@ -171,7 +170,20 @@ int main()
 }
 ```
 #第四週
-## 第一題
+
+## 第一題 結構的宣告、定義
+```
+#include <stdio.h>
+struct DATA
+{
+   float x,y,z; 
+}
+int main()
+{
+
+}
+```
+## 第二題 把變數的x,y,z用小數點拿出來用
 ```
 #include <stdio.h>
 struct DATA
@@ -187,7 +199,7 @@ int main()
     printf("%f %f %f\n", point1.x,point1.y,point1.z);
 }
 ```
-## 第三題
+## 第三題 結構的陣列
 ```
 #include <stdio.h>
 struct DATA
@@ -207,7 +219,32 @@ int main()
     }
 }
 ```
-## 第五題
+## 第四題  global變數 /local變數
+```
+#include <stdio.h>
+struct DATA
+{ ///宣告
+ float x,y,z;          /// 外面 golbal 全域變數
+
+} a, b, c;
+struct DATA points[5];
+
+int main()
+{
+ struct DATA d,e,f;    /// 裡面 local 區域變數 沒有給值,是亂碼
+ 
+ for(int i=0; i<5 ;i++)
+ {
+   point[i].x= i*10;
+   point[i].y= 20;
+   point[i].z= 0;
+   printf("%f %f %f\n", point[i].x,point[i].y,point[i].z);
+ }
+}
+
+```
+## 第五題  結構的宣告與初始值
+```
 #include <stdio.h>
 struct DATA
 { ///宣告
@@ -229,3 +266,4 @@ int main()
     printf("%f %f %f\n", f.x, f.y, f.z);
 
 }
+```
