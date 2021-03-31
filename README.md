@@ -267,3 +267,117 @@ int main()
 
 }
 ```
+#第五週
+
+## 第一題 除惡務盡
+```C
+#include <stdio.h>
+char line[20]="233233233233233233";
+int main()
+{
+ char *p=line;
+ //scanf("%s",line);
+ for(int i=0; line[i]!=0;i++)
+ {
+  p=&line[i];
+  char c=line[i];
+  if(c!='2')printf("%c",c);
+ }
+ printf("\n");
+}
+```
+## 第二題  字串的宣告
+```C
+#include <stdio.h>
+int main()
+{
+ char line[10]="decline";
+ char line2[10]={'p','r','o','p','e','r','\0'};
+
+ printf("%s\n",line);
+ printf("%s\n",line2);
+}
+```
+## 第三題  加2行新的: char line3[]="majority"; char line4[]={'m','a','j','o','r','i','t','y'}
+```C
+#include <stdio.h>
+int main()
+{
+ char line[10]="decline";
+ char line2[10]={'p','r','o','p','e','r','\0'};
+
+ printf("%s\n",line);
+ printf("%s\n",line2);
+
+ char line3[]="majority 這是好的,沒問題,是多長有多長";
+ char line4[]={'m','a','j','o','r','i','t','y'};
+ printf("%s\n",line3);
+
+ printf("你相信嗎? 這是 line4:==%s==\n",line4);
+}
+```
+## 第四題  char line[5][10] 
+```C
+#include <stdio.h>
+int main()
+{
+  char line[5][10]={"decline","proper","majority","bullet","shop"};
+  char *p;
+  for(int i=0;i<5;i++)
+  {
+      char *p=line[i];
+      printf("%s\n",line[i]);
+  }
+}
+```
+## 第五題  int a[3][3]={ {1,2,3}, {4,5,6}, {7,8,9} }; 
+```C
+#include <stdio.h>
+int a[3][3]={(1,2,3),(4,5,6),(7,8,9)};
+int main()
+{
+ for(int i=0;i<3;i++
+ {
+  for(int j=0;j<3;j++)
+  {
+  printf("%d",a[i][j]);
+  }
+    printf("\n");
+ }
+}
+```
+## 第六題  字串排序
+```C
+#include <stdio.h>
+#include <string.h>
+char line[100][10];
+int main()
+{
+ int N;
+ scanf("%d",&N);
+ 
+ for(int i=0;i<N;i++)
+ {
+  scanf("%s",line[i]);
+ }
+  
+ char temp[10];
+ for(int i=0;i<N;i++)
+ {
+  for(int j=i+1;j<N;j++)
+  {
+  if(strcmp(line[i],line[j])>0)
+   {
+    strcpy(temp,line[i]);
+    strcpy(line[i],line[j]);
+    strcpy(line[j],temp);
+  }
+ }
+ }
+ 
+ for(int i=0;i<N;i++)
+ {
+  printf("%s\n",line[i]);
+ }
+}
+```
