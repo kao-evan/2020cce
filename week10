@@ -1,1 +1,142 @@
-
+## 第一題 UVA10008
+```C
+#include <stdio.h>
+char line[10000];
+int main()
+{
+ int n;
+ scanf("%d\n",&n);
+ 
+ for(int i=0;i<n;i++){
+   gets(line);
+   
+   printf("%s\n",line);
+  } //gets()讀整行
+ } 
+```
+## 第二題  每個字母做大小轉換 先能判斷大小寫
+```C
+#include <stdio.h>
+char line[10000];
+int ans[26];//出現的次數
+int main()
+{
+ int n;
+ scanf("%d\n",&n);
+ 
+ for(int i=0;i<n;i++){
+    gets(line);
+    
+    //把小寫,轉大寫
+    //判斷大 小寫?
+    for(int k=0; line[k]!=0; k++){
+     char c= line[k];
+     
+     if( c>='A' && c<='Z' ) printf("大");
+     else if( c>='a' && c<='z' ) printf("小");
+     else printf("他");
+    } 
+  }  //gets()讀整行
+}
+```
+## 第三題 對應的統計 ans[c-'A']++ 或 ans[c-'a']++
+```C
+#include <stdio.h>
+char line[10000];
+int ans[26];//出現的次數
+int main()
+{
+ int n;
+ scanf("%d\n",&n);
+ 
+ for(int i=0;i<n;i++){
+    gets(line);
+    
+    //把小寫,轉大寫
+    //判斷大 小寫?
+    for(int k=0; line[k]!=0; k++){
+     char c= line[k];
+     
+     if( c>='A' && c<='Z' ) ans[ c-'A' ]++;
+     else if( c>='a' && c<='z' ) ans[c-'a']++;
+    } 
+  }  //gets()讀整行
+   for(int i=0;i<26;i++){
+      printf("%c %d\n",'A'+1,ans[i]);
+   }
+}
+```
+## 第四題 用排序，把答案算出來
+```C
+#include <stdio.h>
+char line[10000];
+int ans[26];//出現的次數
+char alphabet[]="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+int main()
+{
+ int n;
+ scanf("%d\n",&n);
+ 
+ for(int i=0;i<n;i++){
+    gets(line);
+    for(int k=0; line[k]!=0; k++){
+     char c= line[k];
+     if( c>='A' && c<='Z' ) ans[ c-'A' ]++;
+     else if( c>='a' && c<='z' ) ans[c-'a']++;
+    } 
+  }  //gets()讀整行
+   for(int i=0;i<26;i++){//排序!!!
+    for(int j=i+1; j<26; j++){
+     if( ans[i]< ans[j] || (ans[i]==ans[j] &&alphabet[i]>alphabet[j])){
+      int temp=ans[i];
+      ans[i]=ans[j];
+      ans[j]=temp;
+      char c= alphabet[i];
+      alphabet[i]= alphabet[j];
+      alphabet[j]= c;
+      }
+     }
+    }  
+     for(int i=0;i<26;i++){
+     if(ans[i]>0) printf("%c %d\n",alphabet[i],ans[i]);
+   }
+}
+```
+## 第五題 改用 qsort()配資料結構 struct來寫出來
+```C
+#include <stdio.h>
+#include <stdlib.h>
+char line[10000];
+typedef struct{
+  int ans;
+  char c;
+}BOX;  
+BOX array[26];
+int compare( const void *p1,const void *p2){
+  if( ((BOX*)p1)->ans > ((BOX*)p2)->ans ) return -1;
+  else if( ((BOX*)p1)->ans <((BOX*)p2)->ans ) return +1;
+  else if( ((BOX*)p1)->c <((BOX*)p2)->c ) return -1;
+  else if( ((BOX*)p1)->c >((BOX*)p2)->c ) return +1;
+  else return 0;//ans相等時,要比字母
+}
+int main()
+{
+ 
+ for(int i=0; i<26;i++) array[i].c='A'+i;
+    int n;
+    scanf("%d\n",&n);
+    for(int i=0;i<n;i++){
+     gets(line);
+    for(int k=0; line[k]!=0; k++){
+     char c= line[k];
+     if( c>='A' && c<='Z' ) array[ c-'A' ].ans++;
+     else if( c>='a' && c<='z' ) array[c-'a'].ans++;
+    } 
+  }  //gets()讀整行
+  qsort ( array, 26, sizeof(BOX), compare);
+  
+     for(int i=0;i<26;i++){
+     if(array[i].ans>0) printf("%c %d\n",array[i].c,array[i].ans );
+   }
+}
+```
