@@ -1,1 +1,96 @@
+## 第一題 結構的宣告、定義
+```
+#include <stdio.h>
+struct DATA
+{
+   float x,y,z; 
+}
+int main()
+{
 
+}
+```
+## 第二題 把變數的x,y,z用小數點拿出來用
+```
+#include <stdio.h>
+struct DATA
+{ ///宣告
+ float x,y,z;  ///定義裡面有...
+} point1 ;
+/// point1 是變數
+int main()
+{
+    point1.x=3; ///使用裡面的值
+    point1.y=5;
+    point1.z=7;
+    printf("%f %f %f\n", point1.x,point1.y,point1.z);
+}
+```
+## 第三題 結構的陣列
+```
+#include <stdio.h>
+struct DATA
+{ ///宣告
+ float x,y,z;  ///定義裡面有...
+} point1 ;
+struct DATA point[5];
+/// point1 是變數
+int main()
+{
+    for(int i=0; i<5; i++)
+    {
+    point[i].x= i*10;
+    point[i].y= 20;
+    point[i].z= 0;
+    printf("%f %f %f\n", point[i].x,point[i].y,point[i].z);
+    }
+}
+```
+## 第四題  global變數 /local變數
+```
+#include <stdio.h>
+struct DATA
+{ ///宣告
+ float x,y,z;          /// 外面 golbal 全域變數
+
+} a, b, c;
+struct DATA points[5];
+
+int main()
+{
+ struct DATA d,e,f;    /// 裡面 local 區域變數 沒有給值,是亂碼
+ 
+ for(int i=0; i<5 ;i++)
+ {
+   point[i].x= i*10;
+   point[i].y= 20;
+   point[i].z= 0;
+   printf("%f %f %f\n", point[i].x,point[i].y,point[i].z);
+ }
+}
+
+```
+## 第五題  結構的宣告與初始值
+```
+#include <stdio.h>
+struct DATA
+{ ///宣告
+ float x,y,z;
+
+} a, b;
+struct DATA c,d;
+
+int main()
+{
+    struct DATA e;
+    struct DATA f={1 ,2 ,3} ; ///宣告的同時,可以初始值
+
+    printf("%f %f %f\n", a.x, a.y, a.z);
+    printf("%f %f %f\n", b.x, b.y, b.z);
+    printf("%f %f %f\n", c.x, c.y, c.z);
+    printf("%f %f %f\n", d.x, d.y, d.z);
+    printf("%f %f %f\n", e.x, e.y, e.z);
+    printf("%f %f %f\n", f.x, f.y, f.z);
+
+}
+```
