@@ -702,3 +702,10 @@ int main()
   } 
 }
 ```
+
+#第十三週
+
+## 第一題  size() 及 background()先完成
+```
+size(1024,400);
+background(255,0,255);
