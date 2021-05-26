@@ -709,3 +709,28 @@ int main()
 ```
 size(1024,400);
 background(255,0,255);
+```
+## 第二題  配合 void setup() 及 void draw()，做互動配合 if(mousePressed) 及 else 來換色。
+```
+void setup(){
+ size(1024,400);
+}
+void draw(){
+  if(mousePressed)background(255,0,255);
+  else background(62,141,247);
+}
+```
+## 第三題  用 void mousePressed() 來做互動, 讓 text() 可以秀出不同的點擊次數
+```
+ size(1024,400);
+}
+void draw(){//每秒畫60次
+  if(mousePressed)background(255,0,255);
+  else background(62,141,247);
+  text(a,512,200);//畫出文字
+}//目標:能畫圖 mouse 按下去
+int a=0;
+void mousePressed(){
+  a++;
+}
+```
