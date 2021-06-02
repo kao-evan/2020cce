@@ -854,6 +854,7 @@ void mousePressed(){
   i2=(int)random(10);
   int temp=a[i1]; a[i1]=a[i2];a[i2]=temp;
 }
+
 ## 第四題  大樂透抽球,其實就是洗牌1000次,再粗暴印出前面5個數字
 ```
 int []a=new int[47];
