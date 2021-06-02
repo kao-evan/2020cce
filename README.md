@@ -803,3 +803,127 @@ void draw(){
    //數字字串數字字串 數字
 }  
 ```
+#第十四週
+
+## 第一題  亂數random()抽個浮點數的數字,並畫出來
+```
+//在有色彩的字，mouse按右鍵
+void setup(){
+ float ans=random(60); // 亂數，會是<60的浮點數
+ text( ans,20,20);  //畫出ans
+}
+void dwaw(){//畫圖
+  
+  }
+```
+## 第二題  用mousePressed互動方式,來產生整數的亂數
+```
+int ans=0;
+void setup(){
+  size(300,300);
+// float ans=random(60); // 亂數，會是<60的浮點數
+  textSize(30);
+  text( ans,20,30);  //畫出ans
+}
+void draw(){//畫圖
+  background(#435FF7);
+  text( ans,20,30);
+}
+void mousePressed(){
+  ans = (int)random(60);
+}
+```
+## 第三題  洗牌,亂數1,亂數2,交換對應位置,重覆做很多次
+```
+int[]a={1,2,3,4,5,6,7,8,9,10};//Java
+int i1,i2;
+void setup(){
+  size(400,100);
+  textSize(30);
+}
+void draw(){
+  background(#435FF7);
+  for(int i=0;i<10;i++){
+    text( a[i], i*40,50);
+  }
+  rect( i1*40,50,30,30);
+  rect( i2*40,50,30,30);
+}
+void mousePressed(){
+  i1=(int)random(10);
+  i2=(int)random(10);
+  int temp=a[i1]; a[i1]=a[i2];a[i2]=temp;
+}
+## 第四題  大樂透抽球,其實就是洗牌1000次,再粗暴印出前面5個數字
+```
+int []a=new int[47];
+void setup(){
+  size(500,200);
+  textSize(30);
+  for(int i=0; i<47;i++) a[i]=i;
+ //讓a[i]的陣列裡，要先放整齊對應的數字
+  for(int i=0; i<1000;i++){
+     int i1=(int)random(47);
+     int i2=(int)random(47);
+  int temp=a[i1]; a[i1]=a[i2];a[i2]=temp;
+ } 
+}
+void draw(){
+  background(#23CBA0);
+  for(int i=0;i<5;i++){
+     text(a[i], i*80, 100);
+ }     
+}
+```
+## 第五題  利用mousePressed互動,決定要秀幾顆球
+```
+int []a=new int[47];
+void setup(){
+  size(500,200);
+  textSize(30);
+  for(int i=0; i<47;i++) a[i]=i;
+ //讓a[i]的陣列裡，要先放整齊對應的數字
+  for(int i=0; i<1000;i++){
+     int i1=(int)random(47);
+     int i2=(int)random(47);
+  int temp=a[i1]; a[i1]=a[i2];a[i2]=temp;
+ } 
+}
+int N=0;
+void draw(){
+  background(#23CBA0);
+  for(int i=0;i<N;i++){
+     text(a[i], i*80, 100);
+ }     
+}
+void mousePressed(){//利用mousePress互動
+  N++;
+} 
+```
+## 第六題  把文字對齊textAlign，用fill(灰階色彩)改色彩
+```
+int []a=new int[47];
+void setup(){
+  size(500,200);
+  textSize(30);
+  for(int i=0; i<47;i++) a[i]=i;
+ //讓a[i]的陣列裡，要先放整齊對應的數字
+  for(int i=0; i<1000;i++){
+     int i1=(int)random(47);
+     int i2=(int)random(47);
+  int temp=a[i1]; a[i1]=a[i2];a[i2]=temp;
+ } 
+}
+int N=0;
+void draw(){
+  background(#23CBA0);
+  textAlign(CENTER,CENTER);
+  for(int i=0;i<N;i++){
+    fill(255); ellipse(  i*80+40,100,55,55);
+    fill(0); text(a[i], i*80+40, 100);
+ }     
+}
+void mousePressed(){//利用mousePress互動
+  N++;
+}  
+```
