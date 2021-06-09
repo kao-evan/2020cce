@@ -928,3 +928,98 @@ void mousePressed(){//利用mousePress互動
   N++;
 }  
 ```
+#第十五週
+
+## 第一題  倒數計時,先能得到second()秒鐘,用奇偶數調背景色
+```
+void setup(){//設定做1次
+  size(400,200);
+}
+void draw(){
+   int s= second();
+   if( s%2==0) background(255,0,0);
+   else background(58,114,191);
+}   
+```
+## 第二題  倒數計時_利用秒數、餘數、減法,做出10到0的倒數計時
+```
+void setup(){//設定做1次
+  size(400,200);
+  textSize(40);
+}
+void draw(){
+  int s =second(); //s增加 0...59
+  background(58,114,191);
+  //text(60-s, 100,100);
+  text( 10 -s%11, 100,100);
+ }   //  0...10=>10...0
+   //共11個數字
+```
+## 第三題  安裝Processing的Sound函式庫,再寫程式,並把 tada.mp3 拉到Processing的PDE視窗,就可以有聲音
+```
+import processing.sound.*;
+SoundFile player;
+void setup(){
+   size(400,200);
+   player = new SoundFile(this, "tada.mp3");
+}  
+void draw(){
+  background(58,114,191); 
+}  
+void mousePressed(){
+   player.play();
+}   
+```
+## 第四題  用 player的isPlaying()來決定stop()或play()
+```
+import processing.sound.*;
+SoundFile player;
+void setup(){
+   size(400,200);
+   player = new SoundFile(this, "bell.mp3");
+}  
+void draw(){
+  background(58,114,191); 
+}  
+void mousePressed(){
+  if( player. isPlaying()){
+   player.play();
+  }else{
+  player.play();
+ }   
+}
+```
+## 第五題  整合step01倒數計時10秒 及 step02 發出聲音,並用 isPlaying()保護一下,每10秒叫一聲tada
+```
+import processing.sound.*;
+SoundFile player;
+void setup(){//設定做1次
+  size(400,200);
+  textSize(40);
+  player = new SoundFile(this, "tada.mp3");
+}
+void draw(){
+  int s =second(); //s增加 0...59
+  background(58,114,191);
+  //text(60-s, 100,100);
+  text( 10 -s%11, 100,100);
+  if( 10-s%11 ==0 && !player.isPlaying() ){
+    player.play();
+  } 
+ }   //  0...10=>10...0
+   //共11個數字
+```
+## 第六題  先裝p5 js 模式,再用converter轉成JavaScript,貼上即可,小心if()的大括號要補
+```
+function setup(){//設定做1次
+  createCanvas(400,200);
+}
+function draw(){
+   let s= second();
+   if( s%2==0){
+     background(255,0,0);
+   }else{
+     background(58,114,191);
+  }   
+}
+```
