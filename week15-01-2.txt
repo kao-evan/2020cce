@@ -1,0 +1,11 @@
+void setup(){//設定做1次
+  size(400,200);
+  textSize(40);
+}
+void draw(){
+  int s =second(); //s增加 0...59
+  background(58,114,191);
+  //text(60-s, 100,100);
+  text( 10 -s%11, 100,100);
+ }   //  0...10=>10...0
+   //共11個數字
