@@ -1023,3 +1023,164 @@ function draw(){
   }   
 }
 ```
+#第十六週
+
+## 第一題  畫出圓盤，用ellipse配合void setup()及void draw()還有background()
+```
+void setup(){
+  size(400,200);
+}
+void draw(){
+background(#0C33C9);  
+ellipse(50,50, 80,80);
+  //    圓心   寬，高
+}  
+```
+## 第二題  畫出圓弧arc，多了2個不明參數,我們利用fill()不同色彩來看結果,並利用mouseX來算出一個magic number
+```
+void setup(){
+  size(400,200);
+}
+void draw(){
+ background(#0C33C9); 
+ fill(255);
+ ellipse(50,50, 80,80);
+  //    圓心   寬，高
+ fill(255,0,0);
+ float stop=mouseX/50.0;
+ text(stop, 100,100); //畫出字
+ arc(50,50, 80,80, 0, stop); //畫出圓弧
+}  //圓心   寬 高 開始 結束  
+```
+## 第三題  用arc()的參數,重點在了解 start 的意思,它可以讓圓弧轉動
+```
+void setup(){
+  size(400,200);
+}
+void draw(){
+ background(#0C33C9); 
+ fill(255);
+ ellipse(50,50, 80,80);
+  //    圓心   寬，高
+ fill(255,0,0);
+ float start= mouseX/50.0;
+ textSize(40);
+ text(start,100,100);
+ arc(50,50, 80,80, 0+start, 0.1+start); //畫出圓弧
+}  //圓心   寬 高 開始 結束  
+
+```
+## 第四題  利用for迴圈,來畫出24片細細的小片,換算出角度,換算出shift位移量,再利用餘數來決定色彩,完成會轉動的大轉盤
+```
+void setup(){
+  size(400,200);
+}
+void draw(){
+ background(#0C33C9); 
+ fill(255);
+ ellipse(100,100, 180,180);
+  //    圓心   寬，高
+ fill(255,0,0);
+ float start= mouseX/50.0;
+ for(int i=0; i<24;i++){
+   float shift=2*PI*i/24.0;
+   if(i%3==0) fill(0);
+   if(i%3==1) fill(#FFF86C);
+   if(i%3==2) fill(255);
+ arc(100,100, 180,180, shift+0+start, shift+PI/12+start); //畫出圓弧
+ }
+}  //圓心   寬 高 開始 結束
+```
+## 第五題  利用if(i==0)來挑出最前面的i,把它設成橘色
+```
+void setup(){
+  size(400,200);
+}
+void draw(){
+ background(#0C33C9); 
+ fill(255);
+ ellipse(100,100, 180,180);
+  //    圓心   寬，高
+ fill(255,0,0);
+ float start= mouseX/50.0;
+ for(int i=0; i<24;i++){
+   float shift=2*PI*i/24.0;
+   if(i%3==0) fill(0);
+   if(i%3==1) fill(#FFF86C);
+   if(i%3==2) fill(255);
+   if(i==0) fill(#FA761E);
+ arc(100,100, 180,180, shift+0+start, shift+PI/12+start); //畫出圓弧
+ }
+}  //圓心   寬 高 開始 結束  
+
+```
+## 第六題  利用外面的global變數float start=0,再於draw()裡,if(start比10小)start+=0.01來讓它轉動
+```
+void setup(){
+  size(400,200);
+}
+float start=0;
+void draw(){
+ background(#0C33C9); 
+ if(start<10) start+=0.01;
+ fill(255); text( start,200,150);
+for(int i=0; i<24;i++){
+   float shift=i*PI/12;
+   if(i%3==0) fill(#000000);
+   if(i%3==1) fill(#FFF86C);
+   if(i%3==2) fill(#FFFFFF);
+   if(i==0) fill(#FA761E);
+ arc(100,100, 180,180, shift+0+start, shift+PI/12+start); //畫出圓弧
+ }
+}  //圓心   寬 高 開始 結束  
+```
+## 第七題  利用速度v來讓start位置會改變, 只要速度夠快,就繼續轉 start += v;  v變0.99倍
+```
+void setup(){
+  size(400,200);
+}
+float start=0, v=0.07; //v是旋轉的速度
+void draw(){
+ background(#0C33C9); 
+ if( v> 0.001){//速度很慢時，就不再轉動
+  start += v; //位置 速度 加速度
+  v *=0.99; //摩擦力，讓速度變慢
+ }//if(start<10) start+=0.01;
+ fill(255); text( start,200,150); text(v,200,170);
+for(int i=0; i<24;i++){
+   float shift=i*PI/12;
+   if(i%3==0) fill(#000000);
+   if(i%3==1) fill(#FFF86C);
+   if(i%3==2) fill(#FFFFFF);
+   if(i==0) fill(#FA761E);
+ arc(100,100, 180,180, shift+0+start, shift+PI/12+start); //畫出圓弧
+ }
+}  //圓心   寬 高 開始 結束  
+
+```
+## 第八題  為了讓每次轉動都有變化,我們在mousePressed()裡,利用random()亂數來決定一開始的速度
+```
+void setup(){
+  size(400,200);
+}
+float start=0, v=0.07;//v是旋轉的速度
+void mousePressed(){
+  v=random(1);
+} 
+void draw(){
+ background(#0C33C9); 
+ if( v> 0.001){//速度很慢時，就不再轉動
+  start += v; //位置 速度 加速度
+  v *=0.99; //摩擦力，讓速度變慢
+ }//if(start<10) start+=0.01;
+ fill(255); text( start,200,150); text(v,200,170);
+for(int i=0; i<24;i++){
+   float shift=i*PI/12;
+   if(i%3==0) fill(#000000);
+   if(i%3==1) fill(#FFF86C);
+   if(i%3==2) fill(#FFFFFF);
+   if(i==0) fill(#FA761E);
+ arc(100,100, 180,180, shift+0+start, shift+PI/12+start); //畫出圓弧
+ }
+} //圓心   寬 高 開始 結束  
+```
