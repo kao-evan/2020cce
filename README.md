@@ -1184,3 +1184,150 @@ for(int i=0; i<24;i++){
  }
 } //圓心   寬 高 開始 結束  
 ```
+#第十七週 打字遊戲
+
+## 第一題  先利用字串變數 String line來方便之後有變化。再利用 text()畫出字串
+```
+void setup(){
+  size(400,200);
+  textSize(40);
+}
+String line="hello"; //字串
+void draw(){
+ background(#3F63E0); 
+ text(line, 100,100); //可以將字串line畫出來
+ text("World",100,150);
+}  
+```
+## 第二題  了解字串可以做+來越接越長, char c是個字母, key也是個字母,也可以+接起來變長
+```
+void setup(){
+  size(400,200);
+  textSize(40);
+}
+String line="hello"; //字串
+char c='9';
+void draw(){
+ background(#3F63E0); 
+ text(line+c+100, 100,100); //可以將字串line畫出來
+ text("World:"+key,100,150);//key 會對應你按下的鍵盤的鍵
+}    
+```
+## 第三題  利用if(判斷)來決定 win是0還是1,並秀出對應的畫面
+```
+void setup(){
+  size(400,200);
+  textSize(40);
+}
+char c='9';
+int win=0;
+void draw(){
+  background(#3F63E0); 
+  text("Press:"+c, 100,100);
+  text("You :"+key,100,150);
+  if(c==key) win=1;
+  else win=0;
+  
+  if(win==1) text("You Win!",100,50);
+}      
+```
+## 第四題 如果打字正確,就換下一個字母, 使用 String字串的 charAt(i) 來挑對應的字母
+```
+void setup(){
+  size(400,200);
+  textSize(40);
+}
+char c='9';
+String ans="abcdefghjklmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ";
+int win=0;
+void draw(){
+  background(#3F63E0); 
+  text("Press:"+c, 100,100);
+  text("You :"+key,100,150);
+  if(c==key) win=1;
+  else win=0;
+  
+  if(win==1){
+  text("You Win!",100,50);
+  int i=int(random(26+26));
+  c=ans.charAt(i);
+ }  
+}      
+```
+## 第五題 利用 void keyPressed() 的時機,看 keyCode值是RIGHT或LEFT來讓方塊的座標可往右、往左移動
+```
+void setup(){
+  size(400,200);
+  textSize(40);
+}
+int x=100,y=100;
+void draw(){
+ background(#3F63E0); 
+ rect(x,y,50,50);//畫方塊
+}
+ void keyPressed(){
+   if(keyCode==LEFT ) x-=10;
+   if(keyCode==RIGHT ) x+=10;
+}    
+```
+## 第六題 讓keyPressed()裡不是直接改x的座標,而是改vx的速度,速度再等速在void draw()裡面移動位置,體驗會更好
+```
+void setup(){
+  size(400,200);
+  textSize(40);
+}
+int x=100,y=100, vx=0, vy=0;
+void draw(){
+ background(#3F63E0); 
+ rect(x,y,50,50);//畫方塊
+ x +=vx;
+}
+ void keyPressed(){
+   if(keyCode==LEFT ) vx=-1;
+   if(keyCode==RIGHT ) vx=+1;
+}
+  void keyReleased(){
+   vx=0;
+}      
+```
+## 第七題 整合第1節課+第2節課,我們利用String line 會在 void keyPressed()時慢慢變長 line = line + key;
+```
+String A="mother";
+String line=" ";
+
+void setup(){
+  size(400,300);
+  textSize(40);
+}
+void draw(){
+ background(0); 
+ text( A,100,100);
+ text(line + "|", 100,150);
+}  
+ void keyPressed(){
+ line= line+key;
+}
+} 
+```
+## 第八題 在keyPressed()裡,加上if(判斷)看是小寫、大寫,就會變長 line = line+key; 如果是 BACKSPACE就會把line變短 
+```
+String A="mother";
+String line=" ";
+
+void setup(){
+  size(400,300);
+  textSize(40);
+}
+void draw(){
+ background(0); 
+ text( A,100,100);
+ text(line + "|", 100,150);
+}  
+ void keyPressed(){
+   int len=line.length();//原字的長度
+   if(key>='a' && key<='z')line=line+key;//小寫鍵
+   if(key>='A' && key<='Z')line=line+key;//大寫鍵
+   if(key==ENTER){   }//比對是否正確
+   if(key==BACKSPACE) line=line.substring(0,len-1);//倒退刪掉
+}
+```
